@@ -1,8 +1,7 @@
 package mate.academy.springlibrary.service;
 
-import mate.academy.springlibrary.model.Book;
-
 import java.util.List;
+import mate.academy.springlibrary.model.Book;
 
 public interface BookService {
 
