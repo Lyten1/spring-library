@@ -2,6 +2,7 @@ package mate.academy.springlibrary.repository;
 
 import java.util.List;
 import mate.academy.springlibrary.model.Book;
+import mate.academy.springlibrary.util.DataProcessingException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -30,7 +31,7 @@ public class BookRepositoryImpl implements BookRepository {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Cant insert into db entity book", e);
+            throw new DataProcessingException("Can't insert into db entity book", e);
         } finally {
             if (session != null) {
                 session.close();
@@ -44,7 +45,7 @@ public class BookRepositoryImpl implements BookRepository {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM Book b", Book.class).getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Cant find all books", e);
+            throw new DataProcessingException("Can't find all books", e);
         }
     }
 }
