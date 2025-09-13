@@ -2,7 +2,7 @@ package mate.academy.springlibrary.repository;
 
 import java.util.List;
 import mate.academy.springlibrary.model.Book;
-import mate.academy.springlibrary.util.DataProcessingException;
+import mate.academy.springlibrary.exeption.DataProcessingException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
