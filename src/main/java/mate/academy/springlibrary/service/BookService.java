@@ -1,11 +1,14 @@
 package mate.academy.springlibrary.service;
 
 import java.util.List;
-import mate.academy.springlibrary.model.Book;
+import mate.academy.springlibrary.dto.BookDto;
+import mate.academy.springlibrary.dto.CreateBookRequestDto;
 
 public interface BookService {
 
-    Book save(Book book);
+    BookDto save(CreateBookRequestDto book);
 
-    List findAll();
+    List<BookDto> findAll();
+
+    BookDto findById(Long id);
 }
