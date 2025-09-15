@@ -3,7 +3,6 @@ package mate.academy.springlibrary.repository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.springlibrary.exeption.DataProcessingException;
-import mate.academy.springlibrary.exeption.EntityNotFoundException;
 import mate.academy.springlibrary.model.Book;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,7 +41,7 @@ public class BookRepositoryImpl implements BookRepository {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM Book b", Book.class).getResultList();
         } catch (Exception e) {
-            throw new EntityNotFoundException("Can't find all books", e);
+            throw new DataProcessingException("Can't find all books", e);
         }
     }
 
@@ -53,7 +52,7 @@ public class BookRepositoryImpl implements BookRepository {
                     .setParameter("id", id)
                     .getSingleResult();
         } catch (Exception e) {
-            throw new EntityNotFoundException("Can't find book with id = " + id, e);
+            throw new DataProcessingException("Can't find book with id = " + id, e);
         }
     }
 }

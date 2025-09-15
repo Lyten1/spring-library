@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 public class CreateBookRequestDto {
 
-    private Long id;
     private String title;
     private String author;
     private String isbn;
