@@ -1,6 +1,8 @@
 package mate.academy.springlibrary.controller;
 
 import java.util.List;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mate.academy.springlibrary.dto.BookDto;
 import mate.academy.springlibrary.dto.CreateBookRequestDto;
@@ -35,7 +37,7 @@ public class BookController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BookDto createBook(@RequestBody CreateBookRequestDto bookDto) {
+    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
         return bookService.save(bookDto);
     }
 
