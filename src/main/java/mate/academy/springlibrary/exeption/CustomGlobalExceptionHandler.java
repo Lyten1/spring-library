@@ -23,7 +23,6 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     public ResponseEntity<Object> handleDataProcessingException(EntityNotFoundException exception) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
-        body.put("error", "Entity Not Found");
         body.put("message", exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
