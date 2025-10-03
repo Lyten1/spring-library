@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.springlibrary.dto.BookDto;
+import mate.academy.springlibrary.dto.BookSearchParametersDto;
 import mate.academy.springlibrary.dto.CreateBookRequestDto;
 import mate.academy.springlibrary.service.BookService;
 import org.springframework.data.domain.Pageable;
@@ -57,5 +58,10 @@ public class BookController {
     @Operation(summary = "Delete existing book")
     public void deleteBook(@PathVariable Long id) {
         bookService.delete(id);
+    }
+
+    @GetMapping("/search")
+    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
+        return bookService.search(searchParameters);
     }
 }
