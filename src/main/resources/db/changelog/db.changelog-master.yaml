@@ -1,3 +1,7 @@
 databaseChangeLog:
   - include:
       file: db/changelog/changes/01-create-entity-book.yaml
+  - include:
+      file: db/changelog/changes/02-create-entity-user.yaml
+  - include:
+      file: db/changelog/changes/03-insert-entity-user.yaml
