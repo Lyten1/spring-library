@@ -9,9 +9,9 @@ import org.hibernate.validator.constraints.Length;
 public class UserLoginRequestDto {
     @NotBlank
     @Email
-    String email;
+    private String email;
 
     @NotBlank
     @Length(min = 8)
-    String password;
+    private String password;
 }
