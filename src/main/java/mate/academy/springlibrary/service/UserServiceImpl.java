@@ -3,7 +3,6 @@ package mate.academy.springlibrary.service;
 import lombok.RequiredArgsConstructor;
 import mate.academy.springlibrary.dto.user.UserRegistrationRequestDto;
 import mate.academy.springlibrary.dto.user.UserResponseDto;
-import mate.academy.springlibrary.exeption.RegistrationException;
 import mate.academy.springlibrary.mapper.UserMapper;
 import mate.academy.springlibrary.model.User;
 import mate.academy.springlibrary.repository.users.UserRepository;
@@ -26,6 +25,5 @@ public class UserServiceImpl implements UserService {
         User savedUser = userRepository.save(user);
         return userMapper.toResponseDto(savedUser);
     }
-
 
 }

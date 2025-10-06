@@ -2,10 +2,8 @@ package mate.academy.springlibrary.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import mate.academy.springlibrary.dto.user.UserLoginRequestDto;
 import mate.academy.springlibrary.dto.user.UserRegistrationRequestDto;
 import mate.academy.springlibrary.dto.user.UserResponseDto;
-import mate.academy.springlibrary.exeption.RegistrationException;
 import mate.academy.springlibrary.security.AuthenticationService;
 import mate.academy.springlibrary.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +24,4 @@ public class AuthController {
         return userService.register(userDto);
     }
 
-    @PostMapping("/login")
-    public boolean login(@RequestBody UserLoginRequestDto userDto) {
-        return authenticationService.login(userDto);
-    }
 }
