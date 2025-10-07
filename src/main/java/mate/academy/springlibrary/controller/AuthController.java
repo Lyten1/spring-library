@@ -6,7 +6,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mate.academy.springlibrary.dto.user.UserRegistrationRequestDto;
 import mate.academy.springlibrary.dto.user.UserResponseDto;
-import mate.academy.springlibrary.security.AuthenticationService;
 import mate.academy.springlibrary.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final UserService userService;
-    private final AuthenticationService authenticationService;
 
     @PostMapping("/registration")
     @Operation(summary = "Register user")
