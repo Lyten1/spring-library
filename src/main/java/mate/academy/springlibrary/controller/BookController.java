@@ -43,6 +43,7 @@ public class BookController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Create new book")
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
         return bookService.save(bookDto);
     }
@@ -61,6 +62,8 @@ public class BookController {
     }
 
     @GetMapping("/search")
+    @Operation(summary = "Search books by parameters",
+            description = "Search book by parameters: partTitle or authors")
     public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
         return bookService.search(searchParameters);
     }
