@@ -3,21 +3,4 @@ databaseChangeLog:
       id: insert-user
       author: lyten
       changes:
-        - insert:
-            tableName: users
-            columns:
-              - column:
-                  name: email
-                  value: "test@example.com"
-              - column:
-                  name: password
-                  value: "secret123"
-              - column:
-                  name: first_name
-                  value: "John"
-              - column:
-                  name: last_name
-                  value: "Doe"
-              - column:
-                  name: shipping_address
-                  value: "123 Main St"
+        - comment: "Deprecated: test user no longer inserted"
