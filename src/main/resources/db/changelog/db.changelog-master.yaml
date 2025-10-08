@@ -5,3 +5,9 @@ databaseChangeLog:
       file: db/changelog/changes/02-create-entity-user.yaml
   - include:
       file: db/changelog/changes/03-insert-entity-user.yaml
+  - include:
+      file: db/changelog/changes/04-update-schema-user.yaml
+  - include:
+      file: db/changelog/changes/05-create-entity-role-with-needed-changes.yaml
+  - include:
+      file: db/changelog/changes/06-insert-entities-into-db.yaml

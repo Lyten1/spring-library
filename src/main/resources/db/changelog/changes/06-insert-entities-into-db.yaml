@@ -1,0 +1,160 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-initial-roles
+      author: lyten
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: name
+                  value: USER
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 2
+              - column:
+                  name: name
+                  value: ADMIN
+
+  - changeSet:
+      id: insert-initial-books
+      author: lyten
+      changes:
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: title, value: "The Hobbit" }
+              - column: { name: author, value: "J.R.R. Tolkien" }
+              - column: { name: isbn, value: "9780547928227" }
+              - column: { name: price, valueNumeric: 12.99 }
+              - column: { name: description, value: "A fantasy adventure classic." }
+              - column: { name: cover_image, value: "hobbit.jpg" }
+              - column: { name: is_deleted, valueBoolean: false }
+
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: title, value: "1984" }
+              - column: { name: author, value: "George Orwell" }
+              - column: { name: isbn, value: "9780451524935" }
+              - column: { name: price, valueNumeric: 10.50 }
+              - column: { name: description, value: "Dystopian novel on surveillance and control." }
+              - column: { name: cover_image, value: "1984.jpg" }
+              - column: { name: is_deleted, valueBoolean: false }
+
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: title, value: "The Catcher in the Rye" }
+              - column: { name: author, value: "J.D. Salinger" }
+              - column: { name: isbn, value: "9780316769488" }
+              - column: { name: price, valueNumeric: 9.99 }
+              - column: { name: description, value: "Classic coming-of-age novel." }
+              - column: { name: cover_image, value: "catcher.jpg" }
+              - column: { name: is_deleted, valueBoolean: false }
+
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: title, value: "To Kill a Mockingbird" }
+              - column: { name: author, value: "Harper Lee" }
+              - column: { name: isbn, value: "9780060935467" }
+              - column: { name: price, valueNumeric: 14.20 }
+              - column: { name: description, value: "Story about racial injustice in the Deep South." }
+              - column: { name: cover_image, value: "mockingbird.jpg" }
+              - column: { name: is_deleted, valueBoolean: false }
+
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: title, value: "A Game of Thrones" }
+              - column: { name: author, value: "George R.R. Martin" }
+              - column: { name: isbn, value: "9780553593716" }
+              - column: { name: price, valueNumeric: 15.50 }
+              - column: { name: description, value: "Epic fantasy novel." }
+              - column: { name: cover_image, value: "got1.jpg" }
+              - column: { name: is_deleted, valueBoolean: false }
+
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: title, value: "A Clash of Kings" }
+              - column: { name: author, value: "George R.R. Martin" }
+              - column: { name: isbn, value: "9780553579901" }
+              - column: { name: price, valueNumeric: 16.00 }
+              - column: { name: description, value: "Second part of A Song of Ice and Fire series." }
+              - column: { name: cover_image, value: "got2.jpg" }
+              - column: { name: is_deleted, valueBoolean: false }
+
+  - changeSet:
+      id: insert-initial-users
+      author: lyten
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: id, valueNumeric: 1 }
+              - column: { name: email, value: "alice@example.com" }
+              - column: { name: password, value: "$2a$10$Gxx.wJyXibvdeXTI499BS.BVeXRbiWZMaaT0oSq.Tr.5170kvkK3a" }  # insert your bcrypt hash
+              - column: { name: first_name, value: "Alice" }
+              - column: { name: last_name, value: "Johnson" }
+              - column: { name: shipping_address, value: "123 Green St" }
+              - column: { name: is_deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: id, valueNumeric: 2 }
+              - column: { name: email, value: "bob@example.com" }
+              - column: { name: password, value: "$2a$10$EQ7.zQ1dVjx8ixWvTO8Abe3bYsnbt13hL3Xzg0D2K0swMEvnGECcK" }
+              - column: { name: first_name, value: "Bob" }
+              - column: { name: last_name, value: "Smith" }
+              - column: { name: shipping_address, value: "456 Blue Ave" }
+              - column: { name: is_deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: id, valueNumeric: 3 }
+              - column: { name: email, value: "admin@example.com" }
+              - column: { name: password, value: "$2a$10$axz4kR56OYnx1rxaihAPP.SQ7vEzlwCGMVoBkxDmOXbkSEWfMM0P2" }
+              - column: { name: first_name, value: "Admin" }
+              - column: { name: last_name, value: "User" }
+              - column: { name: shipping_address, value: "789 Red Blvd" }
+              - column: { name: is_deleted, valueBoolean: false }
+
+  - changeSet:
+      id: insert-user-roles-relations
+      author: lyten
+      changes:
+        # Alice -> USER
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 1 }
+              - column: { name: role_id, valueNumeric: 1 }
+
+        # Bob -> USER
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 2 }
+              - column: { name: role_id, valueNumeric: 1 }
+
+        # Admin -> ADMIN + USER
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 3 }
+              - column: { name: role_id, valueNumeric: 1 }
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 3 }
+              - column: { name: role_id, valueNumeric: 2 }
