@@ -5,9 +5,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import mate.academy.springlibrary.dto.BookDto;
-import mate.academy.springlibrary.dto.BookSearchParametersDto;
-import mate.academy.springlibrary.dto.CreateBookRequestDto;
+import mate.academy.springlibrary.dto.book.BookDto;
+import mate.academy.springlibrary.dto.book.BookSearchParametersDto;
+import mate.academy.springlibrary.dto.book.CreateBookRequestDto;
 import mate.academy.springlibrary.service.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -43,6 +43,7 @@ public class BookController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Create new book")
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
         return bookService.save(bookDto);
     }
@@ -61,6 +62,8 @@ public class BookController {
     }
 
     @GetMapping("/search")
+    @Operation(summary = "Search books by parameters",
+            description = "Search book by parameters: partTitle or authors")
     public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
         return bookService.search(searchParameters);
     }
