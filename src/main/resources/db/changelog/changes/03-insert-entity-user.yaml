@@ -1,6 +1,0 @@
-databaseChangeLog:
-  - changeSet:
-      id: insert-user
-      author: lyten
-      changes:
-        - comment: "Deprecated: test user no longer inserted"
