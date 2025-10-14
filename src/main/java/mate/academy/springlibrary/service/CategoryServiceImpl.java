@@ -10,6 +10,7 @@ import mate.academy.springlibrary.mapper.CategoryMapper;
 import mate.academy.springlibrary.model.Category;
 import mate.academy.springlibrary.repository.books.BookRepository;
 import mate.academy.springlibrary.repository.category.CategoryRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,8 +23,8 @@ public class CategoryServiceImpl implements CategoryService {
     private final BookMapper bookMapper;
 
     @Override
-    public List<CategoryDto> findAll() {
-        return categoryRepository.findAll().stream()
+    public List<CategoryDto> findAll(Pageable pageable) {
+        return categoryRepository.findAll(pageable).stream()
                 .map(categoryMapper::toDto)
                 .toList();
     }
