@@ -30,15 +30,16 @@ databaseChangeLog:
             tableName: books_categories
             columns:
               - column:
-                name: book_id
-                type: bigint
-                constraints:
-                  nullable: false
+                  name: book_id
+                  type: bigint
+                  constraints:
+                    nullable: false
               - column:
                   name: category_id
                   type: bigint
                   constraints:
                     nullable: false
+
 
         - addForeignKeyConstraint:
             constraintName: fk_books_categories_book
