@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-entity-category
+      author: lyten
+      changes:
+        - createTable:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+              - column:
+                  name: is_deleted
+                  type: bit(1)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: books_categories
+            columns:
+              - column:
+                name: book_id
+                type: bigint
+                constraints:
+                  nullable: false
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            constraintName: fk_books_categories_book
+            baseTableName: books_categories
+            baseColumnNames: book_id
+            referencedTableName: books
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            constraintName: fk_books_categories_category
+            baseTableName: books_categories
+            baseColumnNames: category_id
+            referencedTableName: categories
+            referencedColumnNames: id
+            onDelete: CASCADE
