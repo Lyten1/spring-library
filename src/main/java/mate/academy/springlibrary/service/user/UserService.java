@@ -1,4 +1,4 @@
-package mate.academy.springlibrary.service;
+package mate.academy.springlibrary.service.user;
 
 import mate.academy.springlibrary.dto.user.UserRegistrationRequestDto;
 import mate.academy.springlibrary.dto.user.UserResponseDto;

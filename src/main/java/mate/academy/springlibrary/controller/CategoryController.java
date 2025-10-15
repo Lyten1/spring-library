@@ -7,7 +7,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.springlibrary.dto.book.BookDtoWithoutCategoryIds;
 import mate.academy.springlibrary.dto.category.CategoryDto;
-import mate.academy.springlibrary.service.CategoryService;
+import mate.academy.springlibrary.service.category.CategoryService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;

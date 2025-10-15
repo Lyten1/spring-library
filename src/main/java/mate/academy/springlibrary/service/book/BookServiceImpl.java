@@ -1,4 +1,4 @@
-package mate.academy.springlibrary.service;
+package mate.academy.springlibrary.service.book;
 
 import java.util.HashSet;
 import java.util.List;
