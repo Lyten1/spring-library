@@ -2,6 +2,7 @@ package mate.academy.springlibrary.dto.book;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
@@ -30,5 +31,6 @@ public class CreateBookRequestDto {
     private String description;
     private String coverImage;
 
+    @NotEmpty
     private List<Long> categoryIds;
 }
