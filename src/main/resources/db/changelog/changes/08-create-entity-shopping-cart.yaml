@@ -49,3 +49,28 @@ databaseChangeLog:
                   type: int
                   constraints:
                     nullable: false
+
+
+        - addForeignKeyConstraint:
+            constraintName: fk-shopping-item-cart
+            baseTableName: cart_items
+            baseColumnNames: shopping_cart_id
+            referencedTableName: shopping_carts
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            constraintName: fk-shopping-cart-user
+            baseTableName: shopping_carts
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            constraintName: fk-shopping-item-book
+            baseTableName: cart_items
+            baseColumnNames: book_id
+            referencedTableName: books
+            referencedColumnNames: id
+            onDelete: CASCADE

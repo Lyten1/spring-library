@@ -11,3 +11,5 @@ databaseChangeLog:
       file: db/changelog/changes/06-insert-entities-into-db.yaml
   - include:
       file: db/changelog/changes/07-create-entity-category.yaml
+  - include:
+      file: db/changelog/changes/08-create-entity-shopping-cart.yaml
