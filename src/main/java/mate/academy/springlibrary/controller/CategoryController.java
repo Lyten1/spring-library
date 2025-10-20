@@ -43,7 +43,7 @@ public class CategoryController {
     @Operation(summary = "Get all categories",
             description = "Get all categories supporting pagination and sorting")
     @PreAuthorize("hasRole('USER')")
-    public Page getAll(Pageable pageable) {
+    public Page<CategoryResponseDto> getAll(Pageable pageable) {
         return categoryService.findAll(pageable);
     }
 

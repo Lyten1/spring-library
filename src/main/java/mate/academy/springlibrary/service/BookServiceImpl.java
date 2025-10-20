@@ -29,8 +29,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
         Book book = bookMapper.toModel(requestDto);
-        List<Category> categories = categoryRepository.findAllById(requestDto.getCategoryIds());
-        Set<Category> uniqueCategories = categories.stream().collect(Collectors.toSet());
+        Set<Category> uniqueCategories = categoryRepository
+                .findDistinctById(requestDto.getCategoryIds());
         book.setCategories(uniqueCategories);
         return bookMapper.toDto(bookRepository.save(book));
     }

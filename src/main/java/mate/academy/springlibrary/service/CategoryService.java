@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface CategoryService {
 
-    Page findAll(Pageable pageable);
+    Page<CategoryResponseDto> findAll(Pageable pageable);
 
     CategoryResponseDto getById(Long id);
 
