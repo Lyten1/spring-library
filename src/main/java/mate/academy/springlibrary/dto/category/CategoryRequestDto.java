@@ -10,6 +10,5 @@ public class CategoryRequestDto {
 
     @NotBlank
     private String name;
-    @NotBlank
     private String description;
 }
