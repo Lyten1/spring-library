@@ -31,14 +31,14 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    @Operation(summary = "Get all book")
+    @Operation(summary = "Get all books")
     @PreAuthorize("hasRole('USER')")
     public List<BookDto> getAll(Pageable pageable) {
         return bookService.findAll(pageable);
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get book by ID")
+    @Operation(summary = "Get book by Id")
     @PreAuthorize("hasRole('USER')")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.findById(id);
