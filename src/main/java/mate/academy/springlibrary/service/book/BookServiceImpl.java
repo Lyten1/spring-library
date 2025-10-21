@@ -14,6 +14,7 @@ import mate.academy.springlibrary.model.Category;
 import mate.academy.springlibrary.repository.books.BookRepository;
 import mate.academy.springlibrary.repository.books.BookSpecificationBuilder;
 import mate.academy.springlibrary.repository.category.CategoryRepository;
+import mate.academy.springlibrary.service.book.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
