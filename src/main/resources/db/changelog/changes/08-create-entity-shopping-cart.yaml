@@ -44,7 +44,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
 
-
         - addForeignKeyConstraint:
             constraintName: fk-shopping-item-cart
             baseTableName: cart_items
