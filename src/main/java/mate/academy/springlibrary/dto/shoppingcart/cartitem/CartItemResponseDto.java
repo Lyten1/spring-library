@@ -1,5 +1,10 @@
 package mate.academy.springlibrary.dto.shoppingcart.cartitem;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class CartItemResponseDto {
     private Long id;
     private Long bookId;

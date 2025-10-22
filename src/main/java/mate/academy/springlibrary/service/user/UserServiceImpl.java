@@ -10,7 +10,6 @@ import mate.academy.springlibrary.exeption.RegistrationException;
 import mate.academy.springlibrary.mapper.UserMapper;
 import mate.academy.springlibrary.model.Role;
 import mate.academy.springlibrary.model.RoleName;
-import mate.academy.springlibrary.model.ShoppingCart;
 import mate.academy.springlibrary.model.User;
 import mate.academy.springlibrary.repository.role.RoleRepository;
 import mate.academy.springlibrary.repository.users.UserRepository;
@@ -39,13 +38,9 @@ public class UserServiceImpl implements UserService {
         Role userRole = roleRepository.findByName(RoleName.USER)
                 .orElseThrow(() -> new EntityNotFoundException("Role not found"));
         user.setRoles(Set.of(userRole));
-        userRepository.save(user);
-
-        ShoppingCart shoppingCart = new ShoppingCart();
-        shoppingCart.setUser(user);
-        shoppingCartService.create(shoppingCart);
-
-        return userMapper.toResponseDto(user);
+        User savedUser = userRepository.save(user);
+        shoppingCartService.create(savedUser);
+        return userMapper.toResponseDto(savedUser);
     }
 
 }
