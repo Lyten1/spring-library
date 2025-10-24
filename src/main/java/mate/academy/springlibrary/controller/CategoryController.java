@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import mate.academy.springlibrary.dto.book.BookDtoWithoutCategoryIds;
 import mate.academy.springlibrary.dto.category.CategoryRequestDto;
 import mate.academy.springlibrary.dto.category.CategoryResponseDto;
-import mate.academy.springlibrary.service.CategoryService;
+import mate.academy.springlibrary.service.category.CategoryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;

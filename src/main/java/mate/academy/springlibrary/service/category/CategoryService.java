@@ -1,4 +1,4 @@
-package mate.academy.springlibrary.service;
+package mate.academy.springlibrary.service.category;
 
 import java.util.List;
 import mate.academy.springlibrary.dto.book.BookDtoWithoutCategoryIds;
