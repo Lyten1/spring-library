@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import mate.academy.springlibrary.dto.book.BookDto;
 import mate.academy.springlibrary.dto.book.BookSearchParametersDto;
 import mate.academy.springlibrary.dto.book.CreateBookRequestDto;
-import mate.academy.springlibrary.service.BookService;
+import mate.academy.springlibrary.service.book.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,14 +31,14 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    @Operation(summary = "Get all book")
+    @Operation(summary = "Get all books")
     @PreAuthorize("hasRole('USER')")
     public List<BookDto> getAll(Pageable pageable) {
         return bookService.findAll(pageable);
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get book by ID")
+    @Operation(summary = "Get book by Id")
     @PreAuthorize("hasRole('USER')")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.findById(id);
