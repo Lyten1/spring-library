@@ -1,12 +1,16 @@
 package mate.academy.springlibrary.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "orders")
 public class Order {
 
@@ -31,5 +35,6 @@ public class Order {
     @Column(nullable = false)
     private String shippingAddress;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderItem> orderItems;
 }
