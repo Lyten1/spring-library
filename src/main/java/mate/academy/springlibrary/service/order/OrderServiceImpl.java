@@ -1,5 +1,9 @@
 package mate.academy.springlibrary.service.order;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import mate.academy.springlibrary.dto.order.OrderItemResponseDto;
 import mate.academy.springlibrary.dto.order.OrderRequestDto;
@@ -8,16 +12,15 @@ import mate.academy.springlibrary.dto.order.OrderUpdateStatusRequestDto;
 import mate.academy.springlibrary.exeption.EntityNotFoundException;
 import mate.academy.springlibrary.mapper.OrderItemMapper;
 import mate.academy.springlibrary.mapper.OrderMapper;
-import mate.academy.springlibrary.model.*;
+import mate.academy.springlibrary.model.CartItem;
+import mate.academy.springlibrary.model.Order;
+import mate.academy.springlibrary.model.OrderItem;
+import mate.academy.springlibrary.model.OrderStatus;
+import mate.academy.springlibrary.model.ShoppingCart;
 import mate.academy.springlibrary.repository.order.OrderRepository;
 import mate.academy.springlibrary.repository.orderitem.OrderItemRepository;
 import mate.academy.springlibrary.service.shoppingcart.ShoppingCartService;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

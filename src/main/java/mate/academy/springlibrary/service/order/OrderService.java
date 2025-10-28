@@ -1,11 +1,10 @@
 package mate.academy.springlibrary.service.order;
 
+import java.util.List;
 import mate.academy.springlibrary.dto.order.OrderItemResponseDto;
 import mate.academy.springlibrary.dto.order.OrderRequestDto;
 import mate.academy.springlibrary.dto.order.OrderResponseDto;
 import mate.academy.springlibrary.dto.order.OrderUpdateStatusRequestDto;
-
-import java.util.List;
 
 public interface OrderService {
 
