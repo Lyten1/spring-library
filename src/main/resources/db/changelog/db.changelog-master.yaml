@@ -13,3 +13,5 @@ databaseChangeLog:
       file: db/changelog/changes/07-create-entity-category.yaml
   - include:
       file: db/changelog/changes/08-create-entity-shopping-cart.yaml
+  - include:
+      file: db/changelog/changes/09-create-entity-order-and-order-items.yaml

@@ -8,6 +8,7 @@ import mate.academy.springlibrary.dto.order.OrderItemResponseDto;
 import mate.academy.springlibrary.dto.order.OrderRequestDto;
 import mate.academy.springlibrary.dto.order.OrderResponseDto;
 import mate.academy.springlibrary.dto.order.OrderUpdateStatusRequestDto;
+import mate.academy.springlibrary.service.order.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,20 +26,22 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Order Controller")
 public class OrderController {
 
+    private final OrderService orderService;
+
     @PostMapping
     @Operation(summary = "Create new order")
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasRole('USER')")
     public OrderResponseDto save(
             @RequestBody OrderRequestDto requestDto) {
-        return null;
+        return orderService.save(requestDto);
     }
 
     @GetMapping
     @Operation(summary = "Return all orders for current user")
     @PreAuthorize("hasRole('USER')")
     public List<OrderResponseDto> getAll() {
-        return List.of();
+        return orderService.getAll();
     }
 
     @PatchMapping("/{id}")
@@ -47,7 +50,7 @@ public class OrderController {
     public OrderResponseDto updateStatus(
             @PathVariable Long id,
             @RequestBody OrderUpdateStatusRequestDto requestDto) {
-        return null;
+        return orderService.update(id, requestDto);
     }
 
     @GetMapping("/{orderId}/items")
@@ -55,7 +58,7 @@ public class OrderController {
     @PreAuthorize("hasRole('USER')")
     public List<OrderItemResponseDto> getAllOrderItems(
             @PathVariable Long orderId) {
-        return List.of();
+        return orderService.getAllOrderItems(orderId);
     }
 
     @GetMapping("/{orderId}/items/{itemId}")
@@ -64,6 +67,6 @@ public class OrderController {
     public OrderItemResponseDto getOrderItem(
             @PathVariable Long orderId,
             @PathVariable Long itemId) {
-        return null;
+        return orderService.getOrderItem(orderId, itemId);
     }
 }

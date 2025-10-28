@@ -20,4 +20,6 @@ public interface ShoppingCartService {
     void deleteShoppingCartItem(Long cartItemId);
 
     ShoppingCart getCurrentShoppingCartEntity();
+
+    void clearShoppingCart(ShoppingCart currentShoppingCartEntity);
 }
