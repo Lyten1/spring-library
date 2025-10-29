@@ -2,6 +2,7 @@ package mate.academy.springlibrary.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.springlibrary.dto.order.OrderItemResponseDto;
@@ -9,6 +10,8 @@ import mate.academy.springlibrary.dto.order.OrderRequestDto;
 import mate.academy.springlibrary.dto.order.OrderResponseDto;
 import mate.academy.springlibrary.dto.order.OrderUpdateStatusRequestDto;
 import mate.academy.springlibrary.service.order.OrderService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,15 +36,15 @@ public class OrderController {
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasRole('USER')")
     public OrderResponseDto save(
-            @RequestBody OrderRequestDto requestDto) {
+            @RequestBody @Valid OrderRequestDto requestDto) {
         return orderService.save(requestDto);
     }
 
     @GetMapping
     @Operation(summary = "Return all orders for current user")
     @PreAuthorize("hasRole('USER')")
-    public List<OrderResponseDto> getAll() {
-        return orderService.getAll();
+    public Page<OrderResponseDto> getAll(Pageable pageable) {
+        return orderService.getAll(pageable);
     }
 
     @PatchMapping("/{id}")
@@ -49,7 +52,7 @@ public class OrderController {
     @PreAuthorize("hasRole('ADMIN')")
     public OrderResponseDto updateStatus(
             @PathVariable Long id,
-            @RequestBody OrderUpdateStatusRequestDto requestDto) {
+            @RequestBody @Valid OrderUpdateStatusRequestDto requestDto) {
         return orderService.update(id, requestDto);
     }
 

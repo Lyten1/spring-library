@@ -1,5 +1,6 @@
 package mate.academy.springlibrary.service.order;
 
+import jakarta.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,6 +11,7 @@ import mate.academy.springlibrary.dto.order.OrderRequestDto;
 import mate.academy.springlibrary.dto.order.OrderResponseDto;
 import mate.academy.springlibrary.dto.order.OrderUpdateStatusRequestDto;
 import mate.academy.springlibrary.exeption.EntityNotFoundException;
+import mate.academy.springlibrary.exeption.OrderProcessingException;
 import mate.academy.springlibrary.mapper.OrderItemMapper;
 import mate.academy.springlibrary.mapper.OrderMapper;
 import mate.academy.springlibrary.model.CartItem;
@@ -20,9 +22,12 @@ import mate.academy.springlibrary.model.ShoppingCart;
 import mate.academy.springlibrary.repository.order.OrderRepository;
 import mate.academy.springlibrary.repository.orderitem.OrderItemRepository;
 import mate.academy.springlibrary.service.shoppingcart.ShoppingCartService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
@@ -35,6 +40,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderResponseDto save(OrderRequestDto requestDto) {
         ShoppingCart currentShoppingCartEntity = shoppingCartService.getCurrentShoppingCartEntity();
+        if (currentShoppingCartEntity.getCartItems().isEmpty()) {
+            throw new OrderProcessingException("Can't process order without items");
+        }
         Order order = new Order();
         order.setShippingAddress(requestDto.getShippingAddress());
         order.setUser(currentShoppingCartEntity.getUser());
@@ -52,10 +60,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderResponseDto> getAll() {
-        return orderRepository.findAll().stream()
-                .map(orderMapper::toDto)
-                .toList();
+    public Page<OrderResponseDto> getAll(Pageable pageable) {
+        return orderRepository.findAll(pageable)
+                .map(orderMapper::toDto);
     }
 
     @Override
