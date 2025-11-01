@@ -41,13 +41,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCartResponseDto getCurrentUsersShoppingCart() {
-        ShoppingCart currentShoppingCart = getCurrentShoppingCart();
+        ShoppingCart currentShoppingCart = getCurrentShoppingCartEntity();
         return shoppingCartMapper.toDto(currentShoppingCart);
     }
 
     @Override
     public ShoppingCartResponseDto addBookToShoppingCart(AddToCartRequestDto requestDto) {
-        ShoppingCart shoppingCart = getCurrentShoppingCart();
+        ShoppingCart shoppingCart = getCurrentShoppingCartEntity();
         CartItem newItem = cartItemMapper.toModel(requestDto);
         newItem.setBook(bookService.getEntityById(requestDto.getBookId()));
         addOrUpdateCartItem(shoppingCart, newItem);
@@ -57,7 +57,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public ShoppingCartResponseDto updateShoppingCartItem(Long cartItemId,
                                                           UpdateCartItemRequestDto cartItemDto) {
-        ShoppingCart shoppingCart = getCurrentShoppingCart();
+        ShoppingCart shoppingCart = getCurrentShoppingCartEntity();
         CartItem cartItem = cartItemRepository.findByIdAndShoppingCartId(
                 cartItemId, shoppingCart.getId());
         cartItemMapper.updateItemFromDto(cartItemDto, cartItem);
@@ -66,14 +66,20 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public void deleteShoppingCartItem(Long cartItemId) {
-        ShoppingCart shoppingCart = getCurrentShoppingCart();
+        ShoppingCart shoppingCart = getCurrentShoppingCartEntity();
         CartItem cartItem = cartItemRepository.findByIdAndShoppingCartId(
                 cartItemId, shoppingCart.getId());
         shoppingCart.getCartItems().remove(cartItem);
         shoppingCartRepository.save(shoppingCart);
     }
 
-    private ShoppingCart getCurrentShoppingCart() {
+    @Override
+    public void clearShoppingCart(ShoppingCart currentShoppingCartEntity) {
+        currentShoppingCartEntity.getCartItems()
+                .forEach(item -> deleteShoppingCartItem(item.getId()));
+    }
+
+    public ShoppingCart getCurrentShoppingCartEntity() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = (User) authentication.getPrincipal();
         User user = userRepository.findById(currentUser.getId())
