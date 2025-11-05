@@ -2,8 +2,6 @@ package mate.academy.springlibrary.dto.book;
 
 import java.math.BigDecimal;
 import java.util.List;
-
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
