@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SpringLibraryApplication {
-    @Autowired
-    private BookService bookService;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringLibraryApplication.class, args);
