@@ -233,6 +233,6 @@ public class BookControllerIntegrationTest {
         // Then
         BookDto[] actual = objectMapper.readValue(result.getResponse().getContentAsByteArray(), BookDto[].class);
         assertNotNull(actual[0]);
-        assertTrue(reflectionEquals(expected, actual[0]));
+        assertTrue(reflectionEquals(expected.get(0), actual[0]));
     }
 }
