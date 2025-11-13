@@ -16,7 +16,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.testcontainers.shaded.org.apache.commons.lang3.builder.EqualsBuilder;
 
 import javax.sql.DataSource;
 import java.math.BigDecimal;
@@ -25,9 +24,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.testcontainers.shaded.org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CategoryControllerIntegration {
@@ -93,10 +94,10 @@ public class CategoryControllerIntegration {
 
         // Then
         CategoryDto actual = objectMapper.readValue(result.getResponse().getContentAsByteArray(), CategoryDto.class);
-        Assertions.assertNotNull(actual);
-        Assertions.assertNotNull(actual.getId());
+        assertNotNull(actual);
+        assertNotNull(actual.getId());
 
-        EqualsBuilder.reflectionEquals(expected, actual, "id");
+        assertTrue(reflectionEquals(expected, actual, "id"));
     }
 
 
@@ -121,9 +122,9 @@ public class CategoryControllerIntegration {
         String json = result.getResponse().getContentAsString();
         JsonNode content = objectMapper.readTree(json).get("content");
         CategoryDto[] actual = objectMapper.readValue(content.toString(), CategoryDto[].class);
-        Assertions.assertEquals(2, actual.length);
-        EqualsBuilder.reflectionEquals(expected.get(0), actual[0]);
-        EqualsBuilder.reflectionEquals(expected.get(1), actual[1]);
+        assertEquals(2, actual.length);
+        assertTrue(reflectionEquals(expected.get(0), actual[0]));
+        assertTrue(reflectionEquals(expected.get(1), actual[1]));
     }
 
     @WithMockUser(username = "user", roles = {"USER"})
@@ -143,8 +144,8 @@ public class CategoryControllerIntegration {
 
         // Then
         BookDto actual = objectMapper.readValue(result.getResponse().getContentAsByteArray(), BookDto.class);
-        Assertions.assertNotNull(actual);
-        EqualsBuilder.reflectionEquals(expected, actual);
+        assertNotNull(actual);
+        assertTrue(reflectionEquals(expected, actual));
     }
 
     @WithMockUser(username = "admin", roles = {"ADMIN"})
@@ -167,8 +168,8 @@ public class CategoryControllerIntegration {
 
         // Then
         CategoryDto actual = objectMapper.readValue(result.getResponse().getContentAsByteArray(), CategoryDto.class);
-        Assertions.assertNotNull(actual);
-        EqualsBuilder.reflectionEquals(expected, actual);
+        assertNotNull(actual);
+        assertTrue(reflectionEquals(expected, actual));
     }
 
     @WithMockUser(username = "admin", roles = {"ADMIN", "USER"})
@@ -221,8 +222,8 @@ public class CategoryControllerIntegration {
         // Then
         BookDtoWithoutCategoryIds[] actual = objectMapper.readValue(
                 result.getResponse().getContentAsByteArray(), BookDtoWithoutCategoryIds[].class);
-        Assertions.assertEquals(2, actual.length);
-        EqualsBuilder.reflectionEquals(expected.get(0), actual[0]);
-        EqualsBuilder.reflectionEquals(expected.get(1), actual[1]);
+        assertEquals(2, actual.length);
+        assertTrue(reflectionEquals(expected.get(0), actual[0]));
+        assertTrue(reflectionEquals(expected.get(1), actual[1]));
     }
 }
