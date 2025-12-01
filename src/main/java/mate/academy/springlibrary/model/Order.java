@@ -41,7 +41,7 @@ public class Order {
     private User user;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "varchar(255)")
     private OrderStatus status;
 
     @Column(nullable = false)
