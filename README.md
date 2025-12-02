@@ -382,24 +382,10 @@ and update any environment variables (for example `{{token}}`) after login.
 
 ---
 
-## 🎥 Demo Video (Loom)
+## 🎥 Demo Video
 
-> **Required by the assignment:** record a 2–4 minute Loom video.
+![Demo](./demo.gif)
 
-Add your link here once recorded:
-
-```text
-Loom demo: https://www.loom.com/share/your-video-id
-```
-
-Suggested scenario to show in the video:
-
-1. Brief intro: what BookShelf is and tech stack used.
-2. Registration and login in Swagger/Postman.
-3. Demonstrate getting a JWT token and using it in the `Authorization` header.
-4. Show book listing, details, and (as ADMIN) book creation/updating.
-5. Add books to the cart, update quantities, and remove an item.
-6. Create an order from the cart and view the order history.
 
 ---
 
